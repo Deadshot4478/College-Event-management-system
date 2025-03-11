@@ -1,0 +1,289 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #f4f4f9;
+}
+
+/* Navbar */
+.navbar {
+    background: #3498db;
+    color: white;
+    display: flex;
+    justify-content: space-between;  /* ✅ Ensures space between title & logout button */
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+    position: fixed;  /* ✅ Keeps it at the top */
+    top: 0;
+    left: 0;
+    width: 100%;  /* ✅ Ensures it spans across the screen */
+    z-index: 1000; /* ✅ Ensures it's above other content */
+}
+
+
+/* Logout Button */
+#logoutBtn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    /* ✅ Keep it aligned within navbar */
+    margin-right: 50px;  
+}
+#logoutBtn:hover {
+    background-color: #c0392b;
+    transition: background-color 0.3s ease;
+}
+
+.navbar h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+}
+
+/* Fullscreen Blur Effect */
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Apply blur effect */
+    z-index: 1000; /* Ensure it appears above the content but below the alert */
+    display: none; /* Hidden by default */
+}
+
+/* Centered Alert Message */
+.alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 400px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1001; /* Ensure alert is above blur effect */
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Fade-in animation for alerts */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    text-align: center;
+    width: 100vh;
+    height: auto !important;
+    max-height: 60vh;
+    margin: 50px auto;
+    background: linear-gradient(rgba(231, 76, 60, 0.75), rgba(52, 152, 219, 0.75));
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Event List */
+.event-list {
+    list-style: none;
+    padding: 0;
+    font-style: italic;
+}
+
+.event-item {
+    background: #ffffff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-info {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.event-date {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Add Event Button */
+.add-event-btn {
+    background: #2ecc71;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 0;
+}
+.add-event-btn:hover {
+    background-color: #28b060;
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
+
+/* Delete Event Button */
+.delete-event-btn {
+    background: #dd4d25;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.delete-event-btn:hover {
+    background-color: #f23f0e;
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+}
+
+/* Add Event Form */
+.add-event-form {
+    background: inherit;
+    padding-top: 20px;  /* Increased padding */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;  /* Increased margin for more space */
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    padding-bottom: 15px;  /* Increased bottom padding */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;  /* ✅ Adds more space between inputs & buttons */
+    align-items: center;  /* Ensures proper alignment */
+}
+
+.add-event-form input, 
+.add-event-form button {
+    padding: 12px;  /* Slightly larger padding for better spacing */
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    width: 80%;
+}
+
+
+.add-event-form.hidden {
+    display: none;
+}
+
+/* Triangles Background */
+.triangles {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
+/* Left Triangle */
+.triangle.left {
+    border-width: 100vh 50vw 0 0;
+    border-color: #3498db transparent transparent transparent;
+    top: 5%;
+    left: 0;
+}
+
+/* Right Triangle */
+.triangle.right {
+    border-width: 100vh 0 0 50vw;
+    border-color: transparent transparent transparent #e74c3c;
+    top: 5%;
+    right: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .triangle.left {
+        border-width: 100vh 50vw 0 0;
+        top: 10%;
+    }
+    .triangle.right {
+        border-width: 100vh 0 0 50vw;
+        top: 10%;
+    }
+}
+
+@media (max-width: 1080px) {
+    .triangle.left {
+        border-width: 100vh 50vw 0 0;
+        top: 15%;
+    }
+    .triangle.right {
+        border-width: 100vh 0 0 50vw;
+        top: 15%;
+    }
+}

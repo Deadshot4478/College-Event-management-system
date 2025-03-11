@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<body>
+    <!-- Background Triangles -->
+    <div class="triangles">
+        <div class="triangle left"></div>
+        <div class="triangle right"></div>
+    </div>
+
+    <!-- Background Blur Overlay -->
+    <div class="blur-overlay"></div>
+
+    <div class="container">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="/login" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="button-container">
+                    <button type="submit">Login</button>
+                    <button type="button" onclick="window.location.href='/register'">New User</button> <!-- ✅ Fix: Prevent form submission -->
+                </div>
+            </form>
+        </div>
+
+        <!-- Alert Message (Inside Container for Proper Alignment) -->
+        <% if (message) { %>
+            <div class="alert <%= message.type === 'success' ? 'alert-success' : 'alert-danger' %>">
+                <%= message.text %>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- JavaScript for Alert Handling -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const alertBox = document.querySelector(".alert");
+            const blurOverlay = document.querySelector(".blur-overlay");
+
+            if (alertBox) {
+                blurOverlay.style.display = "block"; // Show blur
+
+                setTimeout(() => {
+                    alertBox.style.animation = "fadeOut 0.5s ease-in-out forwards";
+                    setTimeout(() => {
+                        alertBox.remove();
+                        blurOverlay.style.display = "none"; // Hide blur
+                    }, 500);
+                }, 3000); // 3-second delay
+            }
+        });
+    </script>
+
+</body>
+</html>

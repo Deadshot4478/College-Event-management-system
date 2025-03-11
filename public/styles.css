@@ -1,0 +1,204 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f4f4f9;
+}
+
+/* Container */
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Background Triangles */
+.triangles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transition: all 0.5s ease-in-out;
+}
+
+.triangle.left {
+  border-width: 100vh 50vw 0 0;
+  border-color: #3498db transparent transparent transparent;
+  top: 0;
+  left: 0;
+}
+
+.triangle.right {
+  border-width: 100vh 0 0 50vw;
+  border-color: transparent transparent transparent #e74c3c;
+  top: 0;
+  right: 0;
+}
+
+/* Login Box */
+.login-box {
+  position: relative;
+  z-index: 10;
+  background: white;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fade-in 1s ease-in-out;
+}
+
+.login-box h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Input Fields */
+input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+
+  border-radius: 5px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center;     /* Center buttons vertically */
+    gap: 10px;
+
+    margin-left: 8%;
+                /* Space between buttons */
+    width: 85%;
+    position: relative;
+}
+
+/* Buttons */
+button {
+  width: 100%; /* Make buttons equal width */
+
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  flex: 1; /* Distribute available space equally */
+}
+
+button:hover {
+  background-color: #2980b9;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+/* Fade-out Animation */
+.fade-out {
+  animation: fade-out 0.5s ease-in-out forwards;
+}
+
+/* Fullscreen Blur Effect */
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  z-index: 1000; /* Ensure it's above content but below the alert */
+  display: none; /* Hidden by default */
+}
+
+/* Centered Alert Message */
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 400px;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1001; /* Ensure alert is above blur effect */
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Success Message */
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Error Message */
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Fade-in Animation for Alerts */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Fade-out Animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .login-box {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically */
+  }
+
+  button {
+    width: 100%;
+  }
+}

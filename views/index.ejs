@@ -1,0 +1,59 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<head>
+    <link rel="stylesheet" href="/dashboard.css">
+    <script defer src="/dashboard.js"></script>
+</head>
+<body>
+    <div class="triangles">
+        <div class="triangle left"></div>
+        <div class="triangle right"></div>
+    </div>
+    <nav class="navbar">
+        <h2>College Events</h2>
+        <% if (user) { %>
+            <button id="logoutBtn" onclick="window.location.href='/logout'">Logout</button>
+        <% } %>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1> Events</h1>
+        <ul class="event-list">
+            <% if (events.length === 0) { %>
+                <li>No events available</li>
+            <% } else { %>
+                <% events.forEach(event => { %>
+                    <li class="event-item">
+                        <div class="event-info">
+                        <strong><%= event.name %></strong>
+                        <span class="event-date"><%= event.date.toDateString() %></span>
+                    </div>
+                        <% if (user && user.isAdmin) { %>
+                            <form class="add_eventFourm" action="/delete-event" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?')">
+                                <input type="hidden" name="id" value="<%= event._id %>"> <!-- Pass event ID -->
+                                <button type="submit" class="delete-event-btn">- Delete Event</button>
+                            </form>
+                        <% } %>
+                    </li>
+                    
+                <% }); %>
+            <% } %>
+        </ul>
+
+        <% if (user && user.isAdmin) { %>
+            <button class="add-event-btn" onclick="toggleForm()">+ Add Event</button>
+            <form action="/add-event" method="POST" class="add-event-form hidden">
+                <input type="text" name="name" placeholder="Event Name" required />
+                <input type="date" name="date" required />
+                <button type="submit">Submit</button>
+            </form>
+         
+        <% } %>
+    </div>
+    <% if (message) { %>
+        <div class="alert <%= message.type === 'success' ? 'alert-success' : 'alert-danger' %>">
+          <%= message.text %>
+        </div>
+      <% } %>
+      
+</body>

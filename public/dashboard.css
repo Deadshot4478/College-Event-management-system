@@ -1,4 +1,8 @@
 /* General Styles */
+
+h1{
+    position: sticky;    
+}
 body {
     margin: 0;
     font-family: Arial, sans-serif;

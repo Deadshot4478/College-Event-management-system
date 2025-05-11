@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// ✅ Initialize session BEFORE using it
+// Initialize session BEFORE using it
 app.use(
   session({
     secret: "secret-key",
@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-// ✅ Middleware for Flash Messages
+// Middleware for Flash Messages
 app.use((req, res, next) => {
   res.locals.message = req.session.message || null; // ✅ Prevents undefined error
   req.session.message = null; // ✅ Clear message after displaying
@@ -30,12 +30,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-// ✅ Login Route
+// Login Route
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
-// ✅ Register Route
+// Register Route
 app.get("/register", (req, res) => {
   res.render("register");
 });
@@ -56,7 +56,6 @@ const eventRoutes = require("../routes/eventRoutes");
 app.use("/", eventRoutes);
 app.use("/", authRoutes);
 
-// ✅ Fix: Fetch events before rendering homepage
 app.get("/", async (req, res) => {
   if (!req.session.user) {
     return res.redirect("/login"); // Redirect to login if not authenticated
@@ -66,4 +65,4 @@ app.get("/", async (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server is running at: http://localhost:${PORT}`));

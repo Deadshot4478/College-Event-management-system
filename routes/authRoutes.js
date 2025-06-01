@@ -37,12 +37,19 @@ router.post("/register", async (req, res) => {
   }
 
   try {
-    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-    if (existingUser) {
-      req.session.message = { type: "error", text: "Username or email already exists" };
+    const existingUsername = await User.findOne({ username });
+    const existingUseremail = await User.findOne({ email });
+
+    if (existingUsername) {
+      req.session.message = { type: "error", text: "Username already exists" };
       return res.redirect("/register");
     }
 
+    if (existingUseremail) {
+      req.session.message = { type: "error", text: "Email already exists" };
+      return res.redirect("/register");
+    }
+    const isAdminValue = isAdmin === "on" ? true : false;
     const hashedPassword = await bcrypt.hash(password, 10);
     const verificationToken = crypto.randomBytes(32).toString("hex");
 

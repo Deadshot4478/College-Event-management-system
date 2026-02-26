@@ -6,7 +6,7 @@ const crypto = require("crypto");
 
 const router = express.Router();
 
-// ✅ Email Verification Route
+
 router.get("/verify-email", async (req, res) => {
   const { token } = req.query;
   const user = await User.findOne({ verificationToken: token });

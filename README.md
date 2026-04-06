@@ -16,8 +16,12 @@
 >> cd college-event-management
 
 > Install dependencies:npm install
+> Configure Database
+>>Install Mongo DB and add cluster connection to server.js
+>OR
+>>Simply use Mongo DB Atlas and configure .env file: MONGO_URI=your_mongodb_connection_string
 
-> Configure .env file: MONGO_URI=your_mongodb_connection_string
+
  
 > Run the app:
 >> npx nodemon server.js
